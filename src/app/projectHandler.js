@@ -7,12 +7,9 @@ export function addTodo(todo, project) {
     if (project) {
         todo.projectId = project.id;
         project.todos.push(todo);
-        console.log(project.todos.length);
     }
     defaultProject.todos.push(todo);
     todo.id = defaultProject.todos.indexOf(todo);
-    console.log(todo);
-    console.log(defaultProject.todos.length);
 }
 
 export function removeTodo(removedTodo) {
@@ -29,4 +26,18 @@ export function removeTodo(removedTodo) {
         project.todos.splice(projectIndex, 1);
         console.log('removed from project');
     }
+}
+
+export function clearComplete(project) {
+    console.log(project.todos.length);
+    project.todos.forEach((todo) => {
+        console.log('iterate');
+        if (todo.complete) removeTodo(todo);
+    })
+}
+
+function clearProject(project) {
+    project.todos.forEach((todo) => {
+        removeTodo(todo);
+    })
 }
