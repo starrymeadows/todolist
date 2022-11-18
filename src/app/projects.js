@@ -1,14 +1,13 @@
 // factory to create projects
 export function createProject(title) {
     let todos = [];
+    console.log('project created');
     return {title, todos}
 }
 
 export let namedProjects = [];
-export const defaultProject = createProject('default');
 
-export function addProject(title) {
-    const newProject = createProject(title);
+export function addProject(newProject) {
     namedProjects.push(newProject);
     newProject.id = namedProjects.indexOf(newProject);
 }
