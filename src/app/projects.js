@@ -16,4 +16,5 @@ export function removeProject(removedProject) {
     const index = removedProject.id;
     namedProjects.splice(index, 1);
     namedProjects.forEach(project => project.id = namedProjects.indexOf(project));
+    console.log('removed project');
 }

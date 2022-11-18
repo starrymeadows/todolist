@@ -1,5 +1,4 @@
-import { createTodo } from './todos';
-import { createProject } from './projects';
+import { createProject, namedProjects } from './projects';
 
 // manage projects
 export const defaultProject = createProject('default');
@@ -16,8 +15,18 @@ export function addTodo(todo, project) {
     console.log(defaultProject.todos.length);
 }
 
-// function deleteTodo(removedTodo) {
-//     // remove from default project
-//     let index = removedTodo.id;
-//     // remove from individual project
-// }
+export function removeTodo(removedTodo) {
+    // remove from default project
+    const index = removedTodo.id;
+    defaultProject.todos.splice(index, 1);
+    defaultProject.todos.forEach((todo) => todo.id = defaultProject.todos.indexOf(todo));
+    console.log('removed from default');
+    // remove from individual project
+    const projectId = removedTodo.projectId;
+    if (projectId != undefined) {
+        const project = namedProjects[projectId];
+        const projectIndex = project.todos.indexOf(removedTodo);
+        project.todos.splice(projectIndex, 1);
+        console.log('removed from project');
+    }
+}
